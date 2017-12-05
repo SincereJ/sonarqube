@@ -90,6 +90,9 @@ public class LiveMeasureDao implements Dao {
     }
   }
 
+  /**
+   * Delete the rows that do NOT have the specified marker
+   */
   public void deleteByProjectUuidExcludingMarker(DbSession dbSession, String projectUuid, String marker) {
     mapper(dbSession).deleteByProjectUuidExcludingMarker(projectUuid, marker);
   }
