@@ -31,6 +31,11 @@
   border: none;
 }
 
+.navbar-context-avatar.is-small {
+  width: calc(2 * var(--gridSize));
+  height: calc(2 * var(--gridSize));
+}
+
 .navbar-context-avatar img {
   vertical-align: top;
   max-width: 100%;

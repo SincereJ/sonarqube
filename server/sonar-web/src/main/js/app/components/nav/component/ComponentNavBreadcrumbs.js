@@ -81,7 +81,7 @@ class ComponentNavBreadcrumbs extends React.PureComponent {
             <OrganizationAvatar organization={organization} />
             <OrganizationLink
               organization={organization}
-              className="link-base-color link-no-underline">
+              className="link-base-color link-no-underline spacer-left">
               {organization.name}
             </OrganizationLink>
             <span className="slash-separator" />

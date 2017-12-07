@@ -17,19 +17,26 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-// @flow
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import GlobalNavUser from './GlobalNavUser';
+import { Organization } from '../../../types';
 import { fetchMyOrganizations } from '../../../../apps/account/organizations/actions';
 import { getMyOrganizations } from '../../../../store/rootReducer';
 
-const mapStateToProps = state => ({
+interface StateProps {
+  organizations: Organization[];
+}
+
+const mapStateToProps = (state: any): StateProps => ({
   organizations: getMyOrganizations(state)
 });
 
-const mapDispatchToProps = {
-  fetchMyOrganizations
-};
+interface DispatchProps {
+  fetchMyOrganizations: () => Promise<void>;
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(GlobalNavUser));
+const mapDispatchToProps = {
+  fetchMyOrganizations: fetchMyOrganizations as any
+} as DispatchProps;
+
+export default connect(mapStateToProps, mapDispatchToProps)(GlobalNavUser);

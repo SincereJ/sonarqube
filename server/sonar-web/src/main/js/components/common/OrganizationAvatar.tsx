@@ -27,13 +27,15 @@ interface Props {
     avatar?: string;
     name: string;
   };
+  small?: boolean;
 }
 
-export default function OrganizationAvatar({ organization }: Props) {
+export default function OrganizationAvatar({ organization, small }: Props) {
   return (
     <div
-      className={classNames('navbar-context-avatar', 'spacer-right', {
-        'is-empty': !organization.avatar
+      className={classNames('navbar-context-avatar', {
+        'is-empty': !organization.avatar,
+        'is-small': small
       })}>
       {organization.avatar ? (
         <img src={organization.avatar} alt={organization.name} />

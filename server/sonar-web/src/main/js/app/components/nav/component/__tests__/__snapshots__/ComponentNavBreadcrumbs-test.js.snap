@@ -62,7 +62,7 @@ exports[`should render organization 1`] = `
       }
     />
     <OrganizationLink
-      className="link-base-color link-no-underline"
+      className="link-base-color link-no-underline spacer-left"
       organization={
         Object {
           "key": "foo",
