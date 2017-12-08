@@ -29,6 +29,7 @@ import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.Paging;
+import org.sonar.core.permission.ProjectPermissions;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.permission.PermissionQuery;
@@ -49,6 +50,7 @@ import static org.sonar.db.permission.PermissionQuery.RESULTS_MAX_SIZE;
 import static org.sonar.db.permission.PermissionQuery.SEARCH_QUERY_MIN_LENGTH;
 import static org.sonar.server.permission.PermissionPrivilegeChecker.checkGlobalAdmin;
 import static org.sonar.server.permission.ws.PermissionRequestValidator.validateProjectPermission;
+import static org.sonar.server.permission.ws.PermissionsWsParametersBuilder.PROJECT_PERMISSION_PARAM_DESCRIPTION;
 import static org.sonar.server.permission.ws.PermissionsWsParametersBuilder.createProjectPermissionParameter;
 import static org.sonar.server.permission.ws.PermissionsWsParametersBuilder.createTemplateParameters;
 import static org.sonar.server.ws.WsUtils.writeProtobuf;
@@ -83,7 +85,10 @@ public class TemplateGroupsAction implements PermissionsWsAction {
         "When this parameter is not set, only group having at least one permission are returned.")
       .setExampleValue("eri");
 
-    createProjectPermissionParameter(action);
+    action.createParam(PARAM_PERMISSION)
+      .setDescription(PROJECT_PERMISSION_PARAM_DESCRIPTION)
+      .setPossibleValues(ProjectPermissions.ALL);
+
     createTemplateParameters(action);
   }
 
